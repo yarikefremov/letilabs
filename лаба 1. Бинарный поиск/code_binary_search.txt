@@ -1,0 +1,26 @@
+bool binary_search(const int *arr, int N, int target){
+
+ bool type = arr[0] < arr[N-1];
+
+ if(target > arr[N-1] || target < arr[0]) return 0;
+
+ if(arr[0] == target) return 1;
+ if(arr[N-1] == target) return 1;
+
+ int upN = N-1, downN = 0;
+ N /= 2;
+
+    while(downN+1 < upN){
+	
+        if(arr[N] == target) return 1;
+        if(arr[N] > target){
+           upN = N;
+           N = downN + (N-downN)/2;
+        }
+        else if (arr[N] < target){
+           downN = N;
+           N = downN + (upN - N) / 2;
+        }
+    }
+ return 0;
+}
